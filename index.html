@@ -3,25 +3,49 @@
         <title>Guy Lunchtime Answer Generator</title>
         <meta name="description" content="No need to ask Guy about lunch, generate the answer yourself!">
         <meta property="og:title" content="Guy Lunchtime Answer Generator" />
+        <meta property="og:url" content="https://amito.github.io/guy_lunch" />
         <meta property="og:description" content="Guy Lunchtime Answer Generator">
+        <meta property="og:image" content="https://amito.github.io/guy_lunch/static/grzn_flipped.png">
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="he_IL" />
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
         <style>
             #prefix {font-size: 70px;}
             #reason {font-size: 100px;}
-            #ask_again {font-size: 30px;}
+            #ask_again {
+                font-size: 30px;
+                font-weight:bold;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
         </style>
     </head>
     <body>
         <div class="container">
-            <div class="row text-center" id="prefix" dir="rtl">אני בא, אני רק צריך...</div>
-            <div class="row" id="reason" style="text-align: center; white-space: nowrap" dir="rtl"></div>
+            <div class="row text-center" id="prefix" dir="rtl"></div>
+            <div class="well" id="reason" style="text-align: center;" dir="rtl"></div>
             <div class="row" style="text-align:center">
-            <button dir="rtl" id="ask_again" style="font-weight:bold">שאל שוב...</button>
+            <button class="btn btn-default" dir="rtl" id="ask_again" style="font-weight:bold;">שאל שוב...</button>
             </div>
+        </div>
+        <div class="container">
+        <img src="static/grzn.png" class="img-responsive center-block" id="grzn" />
         </div>
     </body>
     <script type="text/javascript">
+        function pickFromArray(array) {
+            var randomNumber = Math.floor(Math.random()*array.length);
+            return array[randomNumber];
+        }
+
+        function generatePrefix() {
+            var prefixesArray = [
+                'אני בא',
+                'תתחילו בלעדי',
+                'עוד שניה מגיע'
+            ];
+            return pickFromArray(prefixesArray);
+        }
+
         function generateAnswer() {
             var answersArray = [
                 'לסגור 6 טיקטים',
@@ -30,15 +54,26 @@
                 'לספר את ארנון',
                 'ללכת לשירותים',
                 'ללכת לצעוק על IT',
-                'לשכתב את ה-iSCSI במערכת'
+                'לשכתב את ה-iSCSI במערכת',
+                'לעזור ל-IT',
+                'לשחק כדורעף עם ציפור'
             ];
-            var randomNumber = Math.floor(Math.random()*answersArray.length);
-            return answersArray[randomNumber];
+            return pickFromArray(answersArray);
+        }
+
+        function generateFlip() {
+            var flipArray = [0, 90, 180, 270];
+            return pickFromArray(flipArray);
         }
 
         function setAnswer() {
+            var prefixElement = document.getElementById("prefix");
+            prefixElement.innerHTML = generatePrefix() + ", אני רק צריך...";
             var reasonElement = document.getElementById("reason");
             reasonElement.innerHTML = generateAnswer();
+            var imgElement = document.getElementById("grzn");
+            flip = generateFlip();
+            grzn.setAttribute("style", "-webkit-transform: rotate(" + flip + "deg); -moz-transform: rotate(" + flip + "deg); -o-transform: rotate(" + flip + "deg); -ms-transform: rotate(" + flip + "deg); transform: rotate(" + flip + "deg);");
         }
 
         window.onload = function() {
