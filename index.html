@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Guy Lunchtime Answer Generator</title>
+        <meta name="description" content="No need to ask Guy about lunch, generate the answer yourself!">
+        <meta property="og:title" content="Guy Lunchtime Answer Generator" />
+        <meta property="og:description" content="Guy Lunchtime Answer Generator">
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <div style="margin: auto; padding: 10px" dir="rtl">
+        <span>אני בא, אני רק צריך...</span><br>
+        <span id="reason" style="text-align: center; font-size:26pt; white-space: nowrap" dir="rtl"></span><br>
+        <button dir="rtl" id="ask_again" style="font-weight:bold">שאל שוב !</button>
+        </div>
+    </body>
+    <script type="text/javascript">
+        function generateAnswer() {
+            var answersArray = [
+                'לסגור 6 טיקטים',
+                'לשכתב את powertools',
+                'לשגרג את ג׳ירה',
+                'לספר את ארנון',
+                'ללכת לשירותים',
+                'ללכת לצעוק על IT',
+                'לשכתב את ה-iSCSI במערכת'
+            ];
+            var randomNumber = Math.floor(Math.random()*answersArray.length);
+            return answersArray[randomNumber];
+        }
+
+        function setAnswer() {
+            var reasonElement = document.getElementById("reason");
+            reasonElement.innerHTML = generateAnswer();
+        }
+
+        window.onload = function() {
+            setAnswer();
+            var askButton = document.getElementById("ask_again");
+            askButton.onclick = function() { setAnswer(); }
+        }
+    </script>
+</html>
