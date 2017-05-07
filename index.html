@@ -5,12 +5,15 @@
         <meta property="og:title" content="Guy Lunchtime Answer Generator" />
         <meta property="og:description" content="Guy Lunchtime Answer Generator">
         <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
     </head>
     <body>
-        <div style="margin: auto; padding: 10px" dir="rtl">
-        <span>אני בא, אני רק צריך...</span><br>
-        <span id="reason" style="text-align: center; font-size:26pt; white-space: nowrap" dir="rtl"></span><br>
-        <button dir="rtl" id="ask_again" style="font-weight:bold">שאל שוב !</button>
+        <div class="container">
+            <div class="row text-center" dir="rtl">אני בא, אני רק צריך...</div>
+            <div class="row" id="reason" style="text-align: center; font-size:26pt; white-space: nowrap" dir="rtl"></div>
+            <div class="row" style="text-align:center">
+            <button dir="rtl" id="ask_again" style="font-weight:bold">שאל שוב !</button>
+            </div>
         </div>
     </body>
     <script type="text/javascript">
