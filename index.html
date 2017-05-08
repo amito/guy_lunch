@@ -50,6 +50,19 @@
         </div>
     </body>
     <script type="text/javascript">
+        var reasonIndex = 0;
+
+        function shuffle(array) {
+            // source: http://stackoverflow.com/a/6274381
+            var j, x, i;
+            for (i = array.length; i; i--) {
+                j = Math.floor(Math.random() * i);
+                x = array[i - 1];
+                array[i - 1] = array[j];
+                array[j] = x;
+            }
+        }
+
         function pickFromArray(array) {
             var randomNumber = Math.floor(Math.random()*array.length);
             return array[randomNumber];
@@ -64,33 +77,33 @@
             return pickFromArray(prefixesArray);
         }
 
-        function generateAnswer() {
-            var answersArray = [
-                'לסגור 6 טיקטים',
-                'לשכתב את powertools',
-                'לשגרג את ג׳ירה',
-                'לספר את ארנון',
-                'ללכת לשירותים',
-                'ללכת לצעוק על IT',
-                'לשכתב את ה-iSCSI במערכת',
-                'לפתור ל-IT את הבעיות',
-                'לשחק כדורעף עם ציפור',
-                'לפתור את הבעיה של גילי',
-                'לתקן את הנזק ששלומי עשה',
-                'להזמין טיסה לוינה',
-                'לממן פרוייקט בקיקסטארטר',
-                'לנגב את הקפה מהמחשב שלי',
-                'לאכול שוקולד',
-                'להרים את ההוסטים',
-                'להוריד את ההוסטים',
-                'להכין לימונדה',
-                'לחתוך תפוח',
-                'להטיס רחפן',
-                'לשחק כדורעף חופים',
-                'לתכנן FLOW חדש'
-            ];
-            return pickFromArray(answersArray);
-        }
+        var reasonArray = [
+            'לסגור 6 טיקטים',
+            'לשכתב את powertools',
+            'לשגרג את ג׳ירה',
+            'לספר את ארנון',
+            'ללכת לשירותים',
+            'ללכת לצעוק על IT',
+            'לשכתב את ה-iSCSI במערכת',
+            'לפתור ל-IT את הבעיות',
+            'לשחק כדורעף עם ציפור',
+            'לפתור את הבעיה של גילי',
+            'לתקן את הנזק ששלומי עשה',
+            'להזמין טיסה לוינה',
+            'לממן פרוייקט בקיקסטארטר',
+            'לנגב את הקפה מהמחשב שלי',
+            'לאכול שוקולד',
+            'להרים את ההוסטים',
+            'להוריד את ההוסטים',
+            'להכין לימונדה',
+            'לחתוך תפוח',
+            'להטיס רחפן',
+            'לשחק כדורעף חופים',
+            'לתכנן FLOW חדש',
+            'להציק לצמחונים',
+            'להוסיף את שייקה ל-Whatsapp',
+            'לשבור משהו על ה-Indo Board'
+        ];
 
         function generateFlip() {
             var flipArray = [0, 90, 180, 270];
@@ -101,13 +114,15 @@
             var prefixElement = document.getElementById("prefix");
             prefixElement.innerHTML = generatePrefix() + ", אני רק צריך...";
             var reasonElement = document.getElementById("reason_text");
-            reasonElement.innerHTML = generateAnswer();
+            reasonIndex = (reasonIndex + 1) % reasonArray.length;
+            reasonElement.innerHTML = reasonArray[reasonIndex];
             var imgElement = document.getElementById("grzn");
             flip = generateFlip();
             grzn.setAttribute("style", "-webkit-transform: rotate(" + flip + "deg); -moz-transform: rotate(" + flip + "deg); -o-transform: rotate(" + flip + "deg); -ms-transform: rotate(" + flip + "deg); transform: rotate(" + flip + "deg);");
         }
 
         window.onload = function() {
+            shuffle(reasonArray);
             setAnswer();
             var askButton = document.getElementById("ask_again");
             askButton.onclick = function() { setAnswer(); }
