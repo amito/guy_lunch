@@ -102,7 +102,9 @@
             'לתכנן FLOW חדש',
             'להציק לצמחונים',
             'להוסיף את שייקה ל-Whatsapp',
-            'לשבור משהו על ה-Indo Board'
+            'לשבור משהו על ה-Indo Board',
+            'לעשות prorder לשני משחקים ל-PS4',
+            'להכין מתיחה לקריאל'
         ];
 
         function generateFlip() {
@@ -114,7 +116,10 @@
             var prefixElement = document.getElementById("prefix");
             prefixElement.innerHTML = generatePrefix() + ", אני רק צריך...";
             var reasonElement = document.getElementById("reason_text");
-            reasonIndex = (reasonIndex + 1) % reasonArray.length;
+            if (reasonIndex == 0) {
+                shuffle(reasonArray);
+            }
+            reasonIndex = (reasonIndex + 1) % reasonArray.length;            
             reasonElement.innerHTML = reasonArray[reasonIndex];
             var imgElement = document.getElementById("grzn");
             flip = generateFlip();
@@ -122,7 +127,6 @@
         }
 
         window.onload = function() {
-            shuffle(reasonArray);
             setAnswer();
             var askButton = document.getElementById("ask_again");
             askButton.onclick = function() { setAnswer(); }
