@@ -4,7 +4,7 @@
         <meta name="description" content="No need to ask Guy about lunch, generate the answer yourself!">
         <meta property="og:title" content="Guy Lunchtime Answer Generator" />
         <meta property="og:url" content="https://amito.github.io/guy_lunch" />
-        <meta property="og:description" content="Guy Lunchtime Answer Generator">
+        <meta property="og:description" content="No need to ask Guy about lunch, generate the answer yourself!">
         <meta property="og:image" content="https://amito.github.io/guy_lunch/static/grzn_flipped.png">
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="he_IL" />
@@ -119,7 +119,7 @@
             if (reasonIndex == 0) {
                 shuffle(reasonArray);
             }
-            reasonIndex = (reasonIndex + 1) % reasonArray.length;            
+            reasonIndex = (reasonIndex + 1) % reasonArray.length;
             reasonElement.innerHTML = reasonArray[reasonIndex];
             var imgElement = document.getElementById("grzn");
             flip = generateFlip();
